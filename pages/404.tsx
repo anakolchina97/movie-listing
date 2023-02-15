@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Container, { ContainerWrap } from "../components/Container";
-import Button, { ButtonWrap } from "../components/Button";
-import H2, { Wrap } from "../components/H2";
+import { ContainerWrap } from "../components/Container";
+import { ButtonWrap } from "../components/Button";
+import { Wrap } from "../components/H2";
 import { rem } from "polished";
 import { TextWrap } from "../components/Text";
 import NotFoundImg from "../public/notfound.svg";

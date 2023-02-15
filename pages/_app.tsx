@@ -1,17 +1,18 @@
 import Header from "../components/Header";
 import usePageLoading from "../hooks/usePageLoading";
 import GlobalStyles from "../styles/GlobalStyles";
-import Theme from "../styles/Theme";
 import { BallTriangle } from "react-loader-spinner";
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
+import theme from "../styles/theme";
+import { AppProps } from "next/app";
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   const { loading } = usePageLoading();
 
-  const [isLoad, setIsLoad] = useState(false);
-  const [isVisibility, setIsVisibility] = useState(false);
+  const [isLoad, setIsLoad] = useState<boolean>(false);
+  const [isVisibility, setIsVisibility] = useState<boolean>(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -21,7 +22,7 @@ export default function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <Theme>
+    <ThemeProvider theme={theme}>
       <GlobalStyles />
       {isLoad ? null : (
         <BallTriangle
@@ -57,10 +58,10 @@ export default function App({ Component, pageProps }) {
           </>
         )}
       </Wrap>
-    </Theme>
+    </ThemeProvider>
   );
 }
 
-const Wrap = styled.div`
+const Wrap = styled.div<{ isVisibility: boolean }>`
   display: ${(props) => (props.isVisibility ? "block" : "none")};
 `;
